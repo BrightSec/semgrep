@@ -104,10 +104,8 @@ class Requirement(NamedTuple):
 
 # Horizontal whitespace only (not \n) to avoid crossing line boundaries,
 # plus line continuations (backslash + newline) per pip spec.
-whitespace = (
-    (regex(r"[ \t]+") | string("\\\n"))
-    .at_least(1)
-    .desc("spaces, tabs, or a backslash line continuation")
+whitespace = regex(r"(?:[ \t]|\\\n)+").desc(
+    "spaces, tabs, or a backslash line continuation"
 )
 
 # We define a package by its possible delimiters instead of trying to define a grammar for package names.
